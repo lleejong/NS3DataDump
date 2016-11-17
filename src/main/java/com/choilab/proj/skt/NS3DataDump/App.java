@@ -31,6 +31,7 @@ public class App {
 
 			// 장비명 그룹명 장비아이피 수집시간 TX_LOSS TX_DELAY TX_JITTER TX 상태 RX_LOSS
 			// RX_DELAY RX_JITTER RX 상태
+			int cnt = 1;
 			while ((line = fileReader.readLine()) != null) {
 				String[] temp = line.split("\\t");
 				double txLoss = Double.parseDouble(temp[4]);
@@ -41,12 +42,14 @@ public class App {
 				double rxDelay = Double.parseDouble(temp[9]);
 				double rxJitter = Double.parseDouble(temp[10]);
 
+				System.out.println(cnt + " : proceeding..");
 				String output = exec(external_prog, txLoss + "", txDelay + "", txJitter + "", rxLoss + "", rxDelay + "", rxJitter + "");
 				// System.out.println(output);
 				double throughput = Double.parseDouble(output);
 				NS3Data obj = new NS3Data(txLoss, txDelay, txJitter, rxLoss, rxDelay, rxJitter, throughput);
 				updateDB(obj);
 
+				System.out.println(cnt + " : complete.");
 			}
 			fileReader.close();
 
@@ -61,7 +64,7 @@ public class App {
 			cmd_args += " ";
 			cmd_args += s;
 		}
-		System.out.println("-- command arguments : " + cmd_args + "\n");
+		//System.out.println("-- command arguments : " + cmd_args + "\n");
 
 		Process process = Runtime.getRuntime().exec(params);
 		// Process process = new ProcessBuilder(
@@ -94,7 +97,7 @@ public class App {
 		// the outer thread waits for the process to finish
 		process.waitFor();
 
-		System.out.println("[DONE]" + strOutput);
+		//System.out.println("[DONE]" + strOutput);
 		return strOutput;
 	}
 
