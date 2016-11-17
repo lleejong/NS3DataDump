@@ -23,7 +23,7 @@ public class App {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			conn = DriverManager.getConnection("jdbc:mysql//localhost/simpletest", "root", "");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/simpletest", "root", "");
 			
 			BufferedReader fileReader = new BufferedReader(new FileReader(fileName));
 			String line = null;
