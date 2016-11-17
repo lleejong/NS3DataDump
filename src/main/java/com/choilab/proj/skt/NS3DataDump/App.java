@@ -45,7 +45,7 @@ public class App {
 				System.out.println(cnt + " : proceeding..");
 				String output = exec(external_prog, txLoss + "", txDelay + "", txJitter + "", rxLoss + "", rxDelay + "", rxJitter + "");
 				// System.out.println(output);
-				double throughput = Double.parseDouble(output);
+				double throughput = Double.parseDouble(output.split(" ")[0]);
 				NS3Data obj = new NS3Data(txLoss, txDelay, txJitter, rxLoss, rxDelay, rxJitter, throughput);
 				updateDB(obj);
 
