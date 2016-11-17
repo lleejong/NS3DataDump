@@ -50,6 +50,7 @@ public class App {
 				updateDB(obj);
 
 				System.out.println(cnt + " : complete.");
+				cnt++;
 			}
 			fileReader.close();
 
@@ -77,7 +78,7 @@ public class App {
 					String line;
 					BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 					while ((line = reader.readLine()) != null) {
-						System.out.println("- " + line);
+						//System.out.println("- " + line);
 						strOutput = line;
 					}
 				} catch (IOException e) {
